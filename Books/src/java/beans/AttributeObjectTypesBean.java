@@ -23,7 +23,7 @@ public class AttributeObjectTypesBean implements Serializable {
     UserTransaction utx;
 
     public List<AttributeObjectTypes> getAttributeObjectTypes() {
-        return em.createQuery("select c from Country c", AttributeObjectTypes.class).getResultList();
+        return em.createQuery("Attribute Object Types", AttributeObjectTypes.class).getResultList();
     }
 
     public void deleteAttributeObjectTypes(String cId) {
@@ -60,7 +60,6 @@ public class AttributeObjectTypesBean implements Serializable {
             AttributeObjectTypes a = new AttributeObjectTypes();
             a.setAttributeID(A.getAttributeID());
             a.setDescription(A.getDescription());
-            a.setId(a.getId());
             a.setObjectTypeID(a.getObjectTypeID());
             
 //  private Long id;

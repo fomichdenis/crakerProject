@@ -23,7 +23,7 @@ public class ParametersBean implements Serializable {
     UserTransaction utx;
 
     public List<Parameters> getParameters() {
-        return em.createQuery("select c from Country c", Parameters.class).getResultList();
+        return em.createQuery("Parameters", Parameters.class).getResultList();
     }
 
     public void deleteParameters(String cId) {
@@ -60,7 +60,6 @@ public class ParametersBean implements Serializable {
             Parameters co = new Parameters();
             co.setAttributeId(newC.getAttributeId());
             co.setDate(newC.getDate());
-            co.setId(newC.getId());
             co.setNumValue(newC.getNumValue());
             co.setObjectId(newC.getObjectId());
             co.setParamId(newC.getParamId());

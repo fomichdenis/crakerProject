@@ -23,7 +23,7 @@ public class AttributesBean implements Serializable {
     UserTransaction utx;
 
     public List<Attributes> getAttributes() {
-        return em.createQuery("select c from Country c", Attributes.class).getResultList();
+        return em.createQuery("Attributes ", Attributes.class).getResultList();
     }
 
     public void deleteAttributes(String cId) {
@@ -63,7 +63,7 @@ public class AttributesBean implements Serializable {
             a.setDescription(A.getDescription());
             a.setProperties(A.getProperties());
             a.setName(A.getName());
-            a.setId(A.getId());
+         
             
 //    private Long id;
 //    private Long attributeId; 

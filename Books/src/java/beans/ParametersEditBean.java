@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped @ManagedBean
 public class ParametersEditBean implements Serializable {
    
-private Long id;
+
 private Long paramId;
 private Long attributeId;
 private Long objectId;
@@ -17,14 +17,7 @@ private String date;
 private Long numValue;
 private  Long referenceId;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+  
     public Long getParamId() {
         return paramId;
     }

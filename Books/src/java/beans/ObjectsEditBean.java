@@ -7,19 +7,11 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped @ManagedBean
 public class ObjectsEditBean implements Serializable {
    
-private Long id;
 private Long objectId;
 private String name; 
 private String description; 
 private Long objectTypeId; 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getObjectsId() {
         return objectId;

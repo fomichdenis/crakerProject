@@ -23,9 +23,8 @@ public class Attributes implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     
-    private Long id;
     private Long attributeId; 
-    private Long AttributeTypeId; 
+    private Long attributeTypeId; 
     private String name; 
     private String description; 
     private String properties; 
@@ -39,11 +38,11 @@ public class Attributes implements Serializable {
     }
 
     public Long getAttributeTypeId() {
-        return AttributeTypeId;
+        return attributeTypeId;
     }
 
     public void setAttributeTypeId(Long AttributeTypeId) {
-        this.AttributeTypeId = AttributeTypeId;
+        this.attributeTypeId = AttributeTypeId;
     }
 
     public String getName() {
@@ -70,29 +69,22 @@ public class Attributes implements Serializable {
         this.properties = properties;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+ 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (attributeId != null ? attributeId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Attributes)) {
+        if (!(object instanceof Attributes )) {
             return false;
         }
         Attributes other = (Attributes) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.attributeId == null && other.attributeId != null) || (this.attributeId != null && !this.attributeId.equals(other.attributeId))) {
             return false;
         }
         return true;
@@ -100,7 +92,7 @@ public class Attributes implements Serializable {
 
     @Override
     public String toString() {
-        return "Ent.Attributes[ id=" + id + " ]";
+        return "Ent.Attributes[ id=" + attributeId + " ]";
     }
     
 }

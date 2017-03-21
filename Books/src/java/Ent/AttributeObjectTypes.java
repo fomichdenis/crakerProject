@@ -23,7 +23,7 @@ public class AttributeObjectTypes implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     
-  private Long id;
+  
   private Long objectTypeID;
   private Long attributeID;
   private String description;
@@ -52,19 +52,13 @@ public class AttributeObjectTypes implements Serializable {
         this.description = description;
     }
    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+   
 
     
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (objectTypeID != null ? objectTypeID.hashCode() : 0);
         return hash;
     }
 
@@ -75,7 +69,7 @@ public class AttributeObjectTypes implements Serializable {
             return false;
         }
         AttributeObjectTypes other = (AttributeObjectTypes) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.objectTypeID == null && other.objectTypeID != null) || (this.objectTypeID != null && !this.objectTypeID.equals(other.objectTypeID))) {
             return false;
         }
         return true;
@@ -83,7 +77,7 @@ public class AttributeObjectTypes implements Serializable {
 
     @Override
     public String toString() {
-        return "Ent.AttributeObjectTypes[ id=" + id + " ]";
+        return "Ent.AttributeObjectTypes[ id=" + objectTypeID + " ]";
     }
     
 }

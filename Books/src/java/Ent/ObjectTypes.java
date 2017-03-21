@@ -24,7 +24,6 @@ public class ObjectTypes implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     
-   private Long id;
    private Long objectTypeId ;
    private String name ;
    private String description;
@@ -53,18 +52,12 @@ public class ObjectTypes implements Serializable {
         this.description = description;
     }
   
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (objectTypeId != null ? objectTypeId.hashCode() : 0);
         return hash;
     }
 
@@ -75,7 +68,7 @@ public class ObjectTypes implements Serializable {
             return false;
         }
         ObjectTypes other = (ObjectTypes) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.objectTypeId == null && other.objectTypeId != null) || (this.objectTypeId != null && !this.objectTypeId.equals(other.objectTypeId))) {
             return false;
         }
         return true;
@@ -83,7 +76,7 @@ public class ObjectTypes implements Serializable {
 
     @Override
     public String toString() {
-        return "Ent.ObjectTypes[ id=" + id + " ]";
+        return "Ent.ObjectTypes[ id=" + objectTypeId + " ]";
     }
     
 }

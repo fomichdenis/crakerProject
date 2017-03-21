@@ -23,7 +23,7 @@ public class ObjectTypesBean implements Serializable {
     UserTransaction utx;
 
     public List<ObjectTypes> getObjectTypes() {
-        return em.createQuery("select c from Country c", ObjectTypes.class).getResultList();
+        return em.createQuery("Object Types", ObjectTypes.class).getResultList();
     }
 
     public void deleteObjectTypes(String cId) {
@@ -58,7 +58,6 @@ public class ObjectTypesBean implements Serializable {
         try {
             utx.begin();
             ObjectTypes co = new ObjectTypes();
-            co.setId(newC.getId());
             co.setName(newC.getName());
             co.setDescription(newC.getDescription());
             co.setObjectTypeId(newC.getObjectTypeId());

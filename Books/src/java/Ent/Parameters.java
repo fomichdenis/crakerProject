@@ -29,7 +29,6 @@ public class Parameters implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     
-private Long id;
 private Long paramId;
 private Long attributeId;
 private Long objectId;
@@ -94,18 +93,12 @@ private  Long referenceId;
         this.referenceId = referenceId;
     }
     
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+ 
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (paramId != null ? paramId.hashCode() : 0);
         return hash;
     }
 
@@ -116,7 +109,7 @@ private  Long referenceId;
             return false;
         }
         Parameters other = (Parameters) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.paramId == null && other.paramId != null) || (this.paramId != null && !this.paramId.equals(other.paramId))) {
             return false;
         }
         return true;
@@ -124,7 +117,7 @@ private  Long referenceId;
 
     @Override
     public String toString() {
-        return "Ent.Parameters[ id=" + id + " ]";
+        return "Ent.Parameters[ id=" + paramId + " ]";
     }
 
     public void persist(Object object) {

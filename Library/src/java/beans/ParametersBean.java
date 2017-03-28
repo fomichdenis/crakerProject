@@ -2,7 +2,7 @@ package beans;
 
 
 
-import Ent.Parameters;
+import Ent.Parameter;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.Resource;
@@ -24,17 +24,17 @@ public class ParametersBean implements Serializable {
     @Resource
     UserTransaction utx;
 
-    public List<Parameters> getParameters() {
-        return em.createQuery("select p from parameters p", Parameters.class).getResultList();
+    public List<Parameter> getParameters() {
+        return em.createQuery("select p from parameters p", Parameter.class).getResultList();
     }
 
-    public void deleteParameters(String cId) {
+    public void deleteParameter(String cId) {
         if (cId == null) {
             return;
         }
         try {
             utx.begin();
-           Parameters c = em.find(Parameters.class, cId);
+           Parameter c = em.find(Parameter.class, cId);
             if(c!= null) {
                 em.remove(c);
             }
@@ -53,13 +53,13 @@ public class ParametersBean implements Serializable {
         }
     }
     
-    public void createParameters(ParametersEditBean newC){
+    public void createParameter(ParametersEditBean newC){
         if (newC == null || newC.getParamId() == null) {     
             return;
         }
         try {
             utx.begin();
-            Parameters co = new Parameters();
+            Parameter co = new Parameter();
             co.setAttributeId(newC.getAttributeId());
             co.setDate(newC.getDate());
             co.setNumValue(newC.getNumValue());
@@ -84,13 +84,13 @@ public class ParametersBean implements Serializable {
         }
     }
     
-    public void createParameters(Parameters newC){
+    public void createParameter(Parameter newC){
         if (newC == null || newC.getParamId() == null) {     
             return;
         }
         try {
             utx.begin();
-            Parameters co = new Parameters();
+            Parameter co = new Parameter();
             co.setAttributeId(newC.getAttributeId());
             co.setDate(newC.getDate());
             co.setNumValue(newC.getNumValue());
@@ -114,13 +114,13 @@ public class ParametersBean implements Serializable {
         }
     }
     
-    public void createParameters(Long attributeId, String date, Long numValue, Long objectId, Long paramId, Long referenceId, String textValue){
+    public void createParameter(Long attributeId, String date, Long numValue, Long objectId, Long paramId, Long referenceId, String textValue){
         if (attributeId == null || objectId == null || paramId == null) {     
             return;
         }
         try {
             utx.begin();
-            Parameters co = new Parameters();
+            Parameter co = new Parameter();
             co.setAttributeId(attributeId);
             co.setDate(date);
             co.setNumValue(numValue);
@@ -144,12 +144,12 @@ public class ParametersBean implements Serializable {
         }
     }
     
-    public Parameters getObjectParameters(Long objectId, Long attributeId) {
-        return em.createQuery("select p from parameters p where p.objectId = " + objectId + "and p.attributeId = " + attributeId, Parameters.class).getSingleResult();
+    public Parameter getObjectParameter(Long objectId, Long attributeId) {
+        return em.createQuery("select p from parameters p where p.objectId = " + objectId + "and p.attributeId = " + attributeId, Parameter.class).getSingleResult();
     }
     
-    public List<Parameters> getObjectParameters(Long objectId) {
-        return em.createQuery("select p from parameters p where p.objectId = " + objectId, Parameters.class).getResultList();
+    public List<Parameter> getObjectParameters(Long objectId) {
+        return em.createQuery("select p from parameters p where p.objectId = " + objectId, Parameter.class).getResultList();
     }
     
 }

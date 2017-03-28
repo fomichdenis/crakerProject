@@ -2,7 +2,7 @@ package beans;
 
 
 
-import Ent.ObjectTypes;
+import Ent.ObjectType;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.Resource;
@@ -24,17 +24,17 @@ public class ObjectTypesBean implements Serializable {
     @Resource
     UserTransaction utx;
 
-    public List<ObjectTypes> getObjectTypes() {
-        return em.createQuery("select ot from object_types ot", ObjectTypes.class).getResultList();
+    public List<ObjectType> getObjectTypes() {
+        return em.createQuery("select ot from object_types ot", ObjectType.class).getResultList();
     }
 
-    public void deleteObjectTypes(String cId) {
+    public void deleteObjectType(String cId) {
         if (cId == null) {
             return;
         }
         try {
             utx.begin();
-           ObjectTypes c = em.find(ObjectTypes.class, cId);
+           ObjectType c = em.find(ObjectType.class, cId);
             if(c!= null) {
                 em.remove(c);
             }
@@ -53,13 +53,13 @@ public class ObjectTypesBean implements Serializable {
         }
     }
     
-    public void createObjectTypes(ObjectTypesEditBean newC){
+    public void createObjectType(ObjectTypesEditBean newC){
         if (newC == null || newC.getObjectTypeId() == null) {     
             return;
         }
         try {
             utx.begin();
-            ObjectTypes co = new ObjectTypes();
+            ObjectType co = new ObjectType();
             co.setName(newC.getName());
             co.setDescription(newC.getDescription());
             co.setObjectTypeId(newC.getObjectTypeId());           

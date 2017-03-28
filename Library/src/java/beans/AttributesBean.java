@@ -2,7 +2,7 @@ package beans;
 
 
 
-import Ent.Attributes;
+import Ent.Attribute;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.Resource;
@@ -24,17 +24,17 @@ public class AttributesBean implements Serializable {
     @Resource
     UserTransaction utx;
 
-    public List<Attributes> getAttributes() {
-        return em.createQuery("select a from attributes a", Attributes.class).getResultList();
+    public List<Attribute> getAttributes() {
+        return em.createQuery("select a from attributes a", Attribute.class).getResultList();
     }
 
-    public void deleteAttributes(String cId) {
+    public void deleteAttribute(String cId) {
         if (cId == null) {
             return;
         }
         try {
             utx.begin();
-           Attributes c = em.find(Attributes.class, cId);
+           Attribute c = em.find(Attribute.class, cId);
             if(c!= null) {
                 em.remove(c);
             }
@@ -53,13 +53,13 @@ public class AttributesBean implements Serializable {
         }
     }
     
-    public void createAttributes(AttributesEditBean A){
+    public void createAttribute(AttributesEditBean A){
         if (A == null || A.getAttributeId() == null) {     
             return;
         }
         try {
             utx.begin();
-            Attributes a = new Attributes();
+            Attribute a = new Attribute();
             a.setAttributeId(A.getAttributeId());
             a.setAttributeTypeId(A.getAttributeTypeId());
             a.setDescription(A.getDescription());

@@ -2,7 +2,7 @@ package beans;
 
 
 
-import Ent.AttributeObjectTypes;
+import Ent.AttributeObjectType;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.Resource;
@@ -24,17 +24,17 @@ public class AttributeObjectTypesBean implements Serializable {
     @Resource
     UserTransaction utx;
 
-    public List<AttributeObjectTypes> getAttributeObjectTypes() {
-        return em.createQuery("select aot attribute_object_types aot", AttributeObjectTypes.class).getResultList();
+    public List<AttributeObjectType> getAttributeObjectTypes() {
+        return em.createQuery("select aot attribute_object_types aot", AttributeObjectType.class).getResultList();
     }
 
-    public void deleteAttributeObjectTypes(String cId) {
+    public void deleteAttributeObjectType(String cId) {
         if (cId == null) {
             return;
         }
         try {
             utx.begin();
-           AttributeObjectTypes c = em.find(AttributeObjectTypes.class, cId);
+           AttributeObjectType c = em.find(AttributeObjectType.class, cId);
             if(c!= null) {
                 em.remove(c);
             }
@@ -53,13 +53,13 @@ public class AttributeObjectTypesBean implements Serializable {
         }
     }
     
-    public void createAttributes(AttributeObjectTypesEditBean A){
+    public void createAttributeObjectType(AttributeObjectTypesEditBean A){
         if (A == null || A.getObjectsTypeID() == null) {     
             return;
         }
         try {
             utx.begin();
-            AttributeObjectTypes a = new AttributeObjectTypes();
+            AttributeObjectType a = new AttributeObjectType();
             a.setAttributeID(A.getAttributeID());
             a.setDescription(A.getDescription());
             a.setObjectsTypeID(a.getObjectsTypeID());            

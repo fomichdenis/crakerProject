@@ -2,7 +2,7 @@ package beans;
 
 
 
-import Ent.Objects;
+import Ent.DataObject;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.Resource;
@@ -24,17 +24,17 @@ public class ObjectsBean implements Serializable {
     @Resource
     UserTransaction utx;
 
-    public List<Objects> getObjects() {
-        return em.createQuery("select o from objects o", Objects.class).getResultList();
+    public List<DataObject> getObjects() {
+        return em.createQuery("select o from objects o", DataObject.class).getResultList();
     }
 
-    public void deleteObjects(String cId) {
+    public void deleteObject(String cId) {
         if (cId == null) {
             return;
         }
         try {
             utx.begin();
-            Objects c = em.find(Objects.class, cId);
+            DataObject c = em.find(DataObject.class, cId);
             if(c!= null) {
                 em.remove(c);
             }
@@ -53,13 +53,13 @@ public class ObjectsBean implements Serializable {
         }
     }
     
-    public void createObjects(ObjectsEditBean newC){
+    public void createObject(ObjectsEditBean newC){
         if (newC == null || newC.getObjectsId() == null) {     
             return;
         }
         try {
             utx.begin();
-            Objects co = new Objects();
+            DataObject co = new DataObject();
             co.setName(newC.getName());
             co.setObjectsId(newC.getObjectsId());
             co.setObjectsTypeId(newC.getObjectsTypeId());
@@ -81,13 +81,13 @@ public class ObjectsBean implements Serializable {
         }
     }
     
-    public void createObjects(Objects newC){
+    public void createObject(DataObject newC){
         if (newC == null || newC.getObjectsId() == null) {     
             return;
         }
         try {
             utx.begin();
-            Objects co = new Objects();
+            DataObject co = new DataObject();
             co.setName(newC.getName());
             co.setObjectsId(newC.getObjectsId());
             co.setObjectsTypeId(newC.getObjectsTypeId());
@@ -109,13 +109,13 @@ public class ObjectsBean implements Serializable {
         }
     }
     
-    public void createObjects(Long objectId, String name, Long objectsTypeId, String description){
+    public void createObject(Long objectId, String name, Long objectsTypeId, String description){
         if (objectId == null || objectsTypeId == null) {     
             return;
         }
         try {
             utx.begin();
-            Objects co = new Objects();
+            DataObject co = new DataObject();
             co.setName(name);
             co.setObjectsId(objectId);
             co.setObjectsTypeId(objectsTypeId);
@@ -137,8 +137,8 @@ public class ObjectsBean implements Serializable {
         }
     }
     
-    public Objects getObjects(Long objectId) {
-        return em.createQuery("select o from objects o where o.objectId = " + objectId, Objects.class).getSingleResult();
+    public DataObject getObject(Long objectId) {
+        return em.createQuery("select o from objects o where o.objectId = " + objectId, DataObject.class).getSingleResult();
     }
     
     

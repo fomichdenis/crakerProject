@@ -1,5 +1,7 @@
 package beans;
 
+
+
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -13,11 +15,11 @@ public class AttributeObjectTypesEditBean implements Serializable {
   private Long attributeID;
   private String description;
 
-    public Long getObjectTypeID() {
+    public Long getObjectsTypeID() {
         return objectTypeID;
     }
 
-    public void setObjectTypeID(Long objectTypeID) {
+    public void setObjectsTypeID(Long objectTypeID) {
         this.objectTypeID = objectTypeID;
     }
 

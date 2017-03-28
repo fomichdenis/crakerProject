@@ -1,5 +1,7 @@
 package beans;
 
+
+
 import Ent.Attributes;
 import java.io.Serializable;
 import java.util.List;
@@ -23,7 +25,7 @@ public class AttributesBean implements Serializable {
     UserTransaction utx;
 
     public List<Attributes> getAttributes() {
-        return em.createQuery("Attributes ", Attributes.class).getResultList();
+        return em.createQuery("select a from attributes a", Attributes.class).getResultList();
     }
 
     public void deleteAttributes(String cId) {
@@ -62,16 +64,7 @@ public class AttributesBean implements Serializable {
             a.setAttributeTypeId(A.getAttributeTypeId());
             a.setDescription(A.getDescription());
             a.setProperties(A.getProperties());
-            a.setName(A.getName());
-         
-            
-//    private Long id;
-//    private Long attributeId; 
-//    private Long AttributeTypeId; 
-//    private String name; 
-//    private String description; 
-//    private String properties; 
-            
+            a.setName(A.getName());            
             if(a!= null) {
                 em.persist(a);
             }

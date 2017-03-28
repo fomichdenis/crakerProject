@@ -27,11 +27,11 @@ private String name;
 private String description; 
 private Long objectTypeId; 
 
-    public Long getObjectId() {
+    public Long getObjectsId() {
         return objectId;
     }
 
-    public void setObjectId(Long objectId) {
+    public void setObjectsId(Long objectId) {
         this.objectId = objectId;
     }
 
@@ -51,11 +51,11 @@ private Long objectTypeId;
         this.description = description;
     }
 
-    public Long getObjectTypeId() {
+    public Long getObjectsTypeId() {
         return objectTypeId;
     }
 
-    public void setObjectTypeId(Long objectTypeId) {
+    public void setObjectsTypeId(Long objectTypeId) {
         this.objectTypeId = objectTypeId;
     }
 

@@ -28,11 +28,11 @@ public class AttributeObjectTypes implements Serializable {
   private Long attributeID;
   private String description;
     
-    public Long getObjectTypeID() {
+    public Long getObjectsTypeID() {
         return objectTypeID;
     }
 
-    public void setObjectTypeID(Long objectTypeID) {
+    public void setObjectsTypeID(Long objectTypeID) {
         this.objectTypeID = objectTypeID;
     }
 

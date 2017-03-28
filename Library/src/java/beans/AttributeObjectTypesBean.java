@@ -1,5 +1,7 @@
 package beans;
 
+
+
 import Ent.AttributeObjectTypes;
 import java.io.Serializable;
 import java.util.List;
@@ -23,7 +25,7 @@ public class AttributeObjectTypesBean implements Serializable {
     UserTransaction utx;
 
     public List<AttributeObjectTypes> getAttributeObjectTypes() {
-        return em.createQuery("Attribute Object Types", AttributeObjectTypes.class).getResultList();
+        return em.createQuery("select aot attribute_object_types aot", AttributeObjectTypes.class).getResultList();
     }
 
     public void deleteAttributeObjectTypes(String cId) {
@@ -52,7 +54,7 @@ public class AttributeObjectTypesBean implements Serializable {
     }
     
     public void createAttributes(AttributeObjectTypesEditBean A){
-        if (A == null || A.getObjectTypeID() == null) {     
+        if (A == null || A.getObjectsTypeID() == null) {     
             return;
         }
         try {
@@ -60,13 +62,7 @@ public class AttributeObjectTypesBean implements Serializable {
             AttributeObjectTypes a = new AttributeObjectTypes();
             a.setAttributeID(A.getAttributeID());
             a.setDescription(A.getDescription());
-            a.setObjectTypeID(a.getObjectTypeID());
-            
-//  private Long id;
-//  private Long objectTypeID;
-//  private Long attributeID;
-//  private String description;
-            
+            a.setObjectsTypeID(a.getObjectsTypeID());            
             if(a!= null) {
                 em.persist(a);
             }

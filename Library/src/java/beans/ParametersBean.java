@@ -1,5 +1,7 @@
 package beans;
 
+
+
 import Ent.Parameters;
 import java.io.Serializable;
 import java.util.List;
@@ -23,7 +25,7 @@ public class ParametersBean implements Serializable {
     UserTransaction utx;
 
     public List<Parameters> getParameters() {
-        return em.createQuery("Parameters", Parameters.class).getResultList();
+        return em.createQuery("select p from parameters p", Parameters.class).getResultList();
     }
 
     public void deleteParameters(String cId) {
@@ -64,17 +66,7 @@ public class ParametersBean implements Serializable {
             co.setObjectId(newC.getObjectId());
             co.setParamId(newC.getParamId());
             co.setReferenceId(co.getReferenceId());
-            co.setTextValue(co.getTextValue());
-           
-//private Long id;
-//private Long paramId;
-//private Long attributeId;
-//private Long objectId;
-//private String textValue; 
-//private String date;
-//private Long numValue;
-//private  Long referenceId;
-            
+            co.setTextValue(co.getTextValue());          
             if(co!= null) {
                 em.persist(co);
             }
@@ -91,4 +83,73 @@ public class ParametersBean implements Serializable {
             }
         }
     }
+    
+    public void createParameters(Parameters newC){
+        if (newC == null || newC.getParamId() == null) {     
+            return;
+        }
+        try {
+            utx.begin();
+            Parameters co = new Parameters();
+            co.setAttributeId(newC.getAttributeId());
+            co.setDate(newC.getDate());
+            co.setNumValue(newC.getNumValue());
+            co.setObjectId(newC.getObjectId());
+            co.setParamId(newC.getParamId());
+            co.setReferenceId(co.getReferenceId());
+            co.setTextValue(co.getTextValue());          
+            if(co!= null) {
+                em.persist(co);
+            }
+            utx.commit();
+        } catch (Exception ex) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "DB Error:", ex.getLocalizedMessage()));
+            ex.printStackTrace(System.err);
+            try {
+                utx.rollback();
+            } catch (Exception exc) {              
+                exc.printStackTrace(System.err);
+            }
+        }
+    }
+    
+    public void createParameters(Long attributeId, String date, Long numValue, Long objectId, Long paramId, Long referenceId, String textValue){
+        if (attributeId == null || objectId == null || paramId == null) {     
+            return;
+        }
+        try {
+            utx.begin();
+            Parameters co = new Parameters();
+            co.setAttributeId(attributeId);
+            co.setDate(date);
+            co.setNumValue(numValue);
+            co.setObjectId(objectId);
+            co.setParamId(paramId);
+            co.setReferenceId(referenceId);
+            co.setTextValue(textValue);          
+            if(co!= null) {
+                em.persist(co);
+            }
+            utx.commit();
+        } catch (Exception ex) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "DB Error:", ex.getLocalizedMessage()));
+            ex.printStackTrace(System.err);
+            try {
+                utx.rollback();
+            } catch (Exception exc) {              
+                exc.printStackTrace(System.err);
+            }
+        }
+    }
+    
+    public Parameters getObjectParameters(Long objectId, Long attributeId) {
+        return em.createQuery("select p from parameters p where p.objectId = " + objectId + "and p.attributeId = " + attributeId, Parameters.class).getSingleResult();
+    }
+    
+    public List<Parameters> getObjectParameters(Long objectId) {
+        return em.createQuery("select p from parameters p where p.objectId = " + objectId, Parameters.class).getResultList();
+    }
+    
 }

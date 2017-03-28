@@ -1,5 +1,7 @@
 package beans;
 
+
+
 import Ent.Objects;
 import java.io.Serializable;
 import java.util.List;
@@ -23,7 +25,7 @@ public class ObjectsBean implements Serializable {
     UserTransaction utx;
 
     public List<Objects> getObjects() {
-        return em.createQuery("Objects", Objects.class).getResultList();
+        return em.createQuery("select o from objects o", Objects.class).getResultList();
     }
 
     public void deleteObjects(String cId) {
@@ -59,15 +61,9 @@ public class ObjectsBean implements Serializable {
             utx.begin();
             Objects co = new Objects();
             co.setName(newC.getName());
-            co.setObjectId(newC.getObjectsId());
-            co.setObjectTypeId(newC.getObjectsTypeId());
-            
-//private Long id;
-//private Long objectId;
-//private String name; 
-//private String description; 
-//private Long objectTypeId; 
-            
+            co.setObjectsId(newC.getObjectsId());
+            co.setObjectsTypeId(newC.getObjectsTypeId());
+            co.setDescription(newC.getDescription());            
             if(co!= null) {
                 em.persist(co);
             }
@@ -84,4 +80,66 @@ public class ObjectsBean implements Serializable {
             }
         }
     }
+    
+    public void createObjects(Objects newC){
+        if (newC == null || newC.getObjectsId() == null) {     
+            return;
+        }
+        try {
+            utx.begin();
+            Objects co = new Objects();
+            co.setName(newC.getName());
+            co.setObjectsId(newC.getObjectsId());
+            co.setObjectsTypeId(newC.getObjectsTypeId());
+            co.setDescription(newC.getDescription());            
+            if(co!= null) {
+                em.persist(co);
+            }
+            
+            utx.commit();
+        } catch (Exception ex) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "DB Error:", ex.getLocalizedMessage()));
+            ex.printStackTrace(System.err);
+            try {
+                utx.rollback();
+            } catch (Exception exc) {              
+                exc.printStackTrace(System.err);
+            }
+        }
+    }
+    
+    public void createObjects(Long objectId, String name, Long objectsTypeId, String description){
+        if (objectId == null || objectsTypeId == null) {     
+            return;
+        }
+        try {
+            utx.begin();
+            Objects co = new Objects();
+            co.setName(name);
+            co.setObjectsId(objectId);
+            co.setObjectsTypeId(objectsTypeId);
+            co.setDescription(description);            
+            if(co!= null) {
+                em.persist(co);
+            }
+            
+            utx.commit();
+        } catch (Exception ex) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "DB Error:", ex.getLocalizedMessage()));
+            ex.printStackTrace(System.err);
+            try {
+                utx.rollback();
+            } catch (Exception exc) {              
+                exc.printStackTrace(System.err);
+            }
+        }
+    }
+    
+    public Objects getObjects(Long objectId) {
+        return em.createQuery("select o from objects o where o.objectId = " + objectId, Objects.class).getSingleResult();
+    }
+    
+    
 }

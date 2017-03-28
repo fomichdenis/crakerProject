@@ -1,5 +1,7 @@
 package beans;
 
+
+
 import Ent.ObjectTypes;
 import java.io.Serializable;
 import java.util.List;
@@ -23,7 +25,7 @@ public class ObjectTypesBean implements Serializable {
     UserTransaction utx;
 
     public List<ObjectTypes> getObjectTypes() {
-        return em.createQuery("Object Types", ObjectTypes.class).getResultList();
+        return em.createQuery("select ot from object_types ot", ObjectTypes.class).getResultList();
     }
 
     public void deleteObjectTypes(String cId) {
@@ -60,12 +62,7 @@ public class ObjectTypesBean implements Serializable {
             ObjectTypes co = new ObjectTypes();
             co.setName(newC.getName());
             co.setDescription(newC.getDescription());
-            co.setObjectTypeId(newC.getObjectTypeId());
-//private Long id;
-//   private Long objectTypeId ;
-//   private String name ;
-//   private String description;
-            
+            co.setObjectTypeId(newC.getObjectTypeId());           
             if(co!= null) {
                 em.persist(co);
             }

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:view>       
+        <h:body>
+            <form>
+                &emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;                
+                <b>Tables </b>
+            </form>
+            <h:form id="emp_form">
+                <h:button value="books" outcome="books"/>   
+                <h:button value="users" outcome="users"/> 
+                <h:button value="authors" outcome="authors"/> 
+                <h:button value="comments" outcome="comments"/> 
+                <h:button value="recordss" outcome="records"/> 
+            </h:form>   
+            <form>
+                -------------------------------------------------------------<br/>
+                &emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp; <b>Read XML</b>
+            </form>
+            <h:form>                
+                <h:panelGrid columns="3">
+                    File name: <h:inputText value="#{string}"/> 
+                    <h:commandButton value="Read DB" actionListener="#{xmlRWBean.parser(string, booksBean, authorsBean, usersBean)}">
+                        <f:ajax execute="@this" render=":emp_form"/>
+                    </h:commandButton>
+                </h:panelGrid>   
+            </h:form>
+            <form>
+                -------------------------------------------------------------<br/>
+                &emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp; <b>Write XML</b>
+            </form>
+            <h:form>                
+                <h:panelGrid columns="3">
+                    File name: <h:inputText value="#{string1}"/> 
+                    <h:commandButton value="Write DB" actionListener="#{xmlRWBean.printToXml(string1, booksBean, authorsBean, usersBean)}">
+                        <f:ajax execute="@this" render=":emp_form"/>
+                    </h:commandButton>
+                </h:panelGrid>   
+            </h:form>
+        </h:body>
+    </f:view>
+</html>
+<!--,employeeBean-->

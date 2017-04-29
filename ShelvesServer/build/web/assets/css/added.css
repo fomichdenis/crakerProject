@@ -1,0 +1,49 @@
+#brand {
+	height: 30px;
+	margin: 10px 30px 10px 10px;
+}
+
+#photo {
+	max-width: 100%;
+}
+
+/*.page::-webkit-scrollbar {*/
+	/*display: none;*/
+/*}*/
+
+
+/*table css*/
+.scrolling-table {
+	overflow: auto;
+	max-height: 70vh;
+}
+.table {
+	table-layout: fixed;
+}
+.table .comment {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+
+
+/*exit button*/
+.btn-main {
+	color: #fff;
+	background-color: transparent;
+	margin-left: 20px;
+}
+.btn-main:hover {
+	color: #000;
+	background-color: #fff;
+	transition: all 0.50s;
+}
+
+
+/*forms*/
+#reg {
+	width: 300px;
+	margin: auto;
+	margin-top: 10%;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/java/webServ/ApplicationConfig.java</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/java/webServ2/service/service/AbstractFacade.java</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/build.xml</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/web/index.html</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/java/webServ2/service/service/AuthorsFacadeREST.java</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/java/beans/AuthorsBean.java</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/conf/MANIFEST.MF</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/java/ent/Books.java</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/conf/persistence.xml</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/nbproject/build-impl.xml</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/java/webServ2/service/service/BooksFacadeREST.java</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/java/ent/Authors.java</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/java/webServ2/service/service/UsersFacadeREST.java</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/java/webServ2/service/service/CommentsFacadeREST.java</file>
+            <file>file:/Users/adaico/NetBeansProjects/ShelvesServer/src/java/webServ2/service/service/RecordsFacadeREST.java</file>
+        </group>
+    </open-files>
+</project-private>

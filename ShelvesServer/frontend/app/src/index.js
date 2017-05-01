@@ -1,13 +1,39 @@
 import React from 'react';
 import {render} from 'react-dom';
 
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+
 import { createStore, applyMiddleware, compose } from 'redux';
+import {reducer} from './redux/reducers'
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
-import {reducer} from './redux/reducers'
 import App from './App';
+import SearchPage from './pages/SearchPage';
+import BookPage from './pages/BookPage';
+import LogIn from './pages/LogIn'
+import SignUp from './pages/SignUp';
+import UserPage from './pages/UserPage';
+import NotFound from './pages/NotFound';
 
+
+const AppRouter = () => (
+	<Router history={hashHistory}>
+		<Route path="/" component={ App }>
+			<IndexRoute component={ SearchPage } />
+			<Route path="/book/:id" component={ BookPage } />
+
+			<Route path="/login" component={ LogIn } />
+			<Route path="/user" component={ UserPage } />
+			<Route path="/signup" component={ SignUp } />
+
+			<Route path="/user" component={ UserPage } />
+			<Route path="/book/:id" component={ BookPage } />
+
+			<Route path='*' component={NotFound} />
+		</Route>
+	</Router>
+)
 
 const store = createStore(
     reducer,
@@ -16,7 +42,7 @@ const store = createStore(
 
 render(
 	<Provider store={store}>
-		<App />
+		<AppRouter/>
 	</Provider>,
 	document.getElementById('root')
 );

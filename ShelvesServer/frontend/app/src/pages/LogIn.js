@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom'
+import { browserHistory, Link } from 'react-router'
 
 import * as actions from '../redux/actions/UsersActions.js'
 
@@ -38,7 +38,6 @@ class LogIn extends Component {
                 <h4>{this.state.password}</h4>
                 <button className="btn btn-lg btn-default btn-block"
                         onClick={this.logIn}>Log In</button>
-                { this.props.user && <Redirect to="/user" />}
                 <Link to="/signup">registration</Link>
                 <div>{this.props.error ? this.props.error.message : null}</div>
             </div>

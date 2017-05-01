@@ -4,7 +4,7 @@ import Request from '../api/RequesterAPI.js'
 import { connect } from 'react-redux';
 import SideInfo from '../components/SideInfo.js'
 
-import { Redirect, Link } from 'react-router-dom';
+import { browserHistory, Link } from 'react-router';
 
 class UserPage extends Component {
 
@@ -31,7 +31,7 @@ class UserPage extends Component {
 
 	render() {
         if (!this.props.user)
-            return <Redirect to="/login" />
+            browserHistory.push('/login');
 
 		return (
             <div className="row">

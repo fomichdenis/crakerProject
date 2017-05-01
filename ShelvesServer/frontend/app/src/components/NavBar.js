@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Request from '../api/RequesterAPI'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import * as actions from '../redux/actions/UsersActions.js'
 

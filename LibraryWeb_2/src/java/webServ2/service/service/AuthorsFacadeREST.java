@@ -41,8 +41,8 @@ public class AuthorsFacadeREST extends AbstractFacade<Authors> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Authors entity) {
-        super.create(entity);
+    public String create(Authors entity) {
+        return super.create(entity);
     }
 
     @PUT

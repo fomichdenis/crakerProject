@@ -2,38 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ2/service/service/AbstractFacade.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/ent/Records.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ/BookResource.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/beans/UsersEditBean.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/setup/glassfish-resources.xml</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ/UserResource.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/web/authors.xhtml</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/beans/RecordEditBean.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/beans/RecordBean.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ/CommentResource.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ/AuthorResource.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/beans/AuthorsEditBean.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/web/users.xhtml</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/beans/UsersBean.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ2/service/service/AuthorsFacadeREST.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/ent/Authors.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/ent/Comments.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/web/books.xhtml</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/beans/CommentEditBean.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ/ApplicationConfig.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/beans/BooksEditBean.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/beans/BooksBean.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ2/service/service/RecordsFacadeREST.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/beans/CommentBean.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ2/service/service/CommentsFacadeREST.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/ent/Books.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/ent/Users.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/beans/AuthorsBean.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ/RecordResource.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ2/service/service/BooksFacadeREST.java</file>
-            <file>file:/C:/Users/fomichdenis/Documents/NetBeansProjects/LibraryWeb_2/src/java/webServ2/service/service/UsersFacadeREST.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

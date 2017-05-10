@@ -41,8 +41,8 @@ public class BooksFacadeREST extends AbstractFacade<Books> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Books entity) {
-        super.create(entity);
+    public String create(Books entity) {
+        return super.create(entity);
     }
 
     @PUT
@@ -63,6 +63,13 @@ public class BooksFacadeREST extends AbstractFacade<Books> {
     @Produces({MediaType.APPLICATION_JSON})
     public String find(@QueryParam("id") Long id) {
         return (new Gson()).toJson(super.find(id));
+    }
+    
+    @GET
+    @Path("findbyauthor")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String findByAuthorId(@QueryParam("id") Long id) {
+        return (new Gson()).toJson(getEntityManager().createQuery("select b from Books b where b.authorid = " + id, Books.class).getResultList());
     }
 
     @GET

@@ -15,20 +15,21 @@ import LogIn from './pages/LogIn'
 import SignUp from './pages/SignUp';
 import UserPage from './pages/UserPage';
 import NotFound from './pages/NotFound';
+import AuthorPage from './pages/AuthorPage';
 
 
 const AppRouter = () => (
 	<Router history={hashHistory}>
 		<Route path="/" component={ App }>
 			<IndexRoute component={ SearchPage } />
+
 			<Route path="/book/:id" component={ BookPage } />
+			<Route path="/author/:id" component={ AuthorPage } />
 
 			<Route path="/login" component={ LogIn } />
-			<Route path="/user" component={ UserPage } />
 			<Route path="/signup" component={ SignUp } />
 
 			<Route path="/user" component={ UserPage } />
-			<Route path="/book/:id" component={ BookPage } />
 
 			<Route path='*' component={NotFound} />
 		</Route>

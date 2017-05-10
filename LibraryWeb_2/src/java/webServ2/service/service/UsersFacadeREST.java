@@ -74,7 +74,9 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @POST
     @Path("findUser")
     @Produces({MediaType.APPLICATION_JSON})
-    public String findByIdPass(@QueryParam("login") String login, @QueryParam("password") String password) {   
+    public String findByIdPass(String data) { 
+    	String login = (new Gson()).fromJson(data, String[].class)[0];
+        String password = (new Gson()).fromJson(data, String[].class)[1];  
         List<Users> u = em.createQuery("select u from Users u where u.login LIKE '" + login + "' and u.password LIKE '" + password  + "'", Users.class).getResultList();
         if (u.isEmpty()){
             return (new Gson()).toJson(null);

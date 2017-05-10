@@ -39,9 +39,16 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
 
     @POST
     @Override
+    @Path("create")
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Users entity) {
-        super.create(entity);
+    public String create(Users entity) {
+        List<Users> u = getEntityManager().createQuery("select u from Users u where u.login LIKE '" + entity.getLogin() + "'", Users.class).getResultList();
+        if (u.isEmpty()) {
+            return super.create(entity);
+        }
+        else {
+            return (new Gson()).toJson("login has already existed");
+        }
     }
 
     @PUT
@@ -63,6 +70,22 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     public String find(@QueryParam("id") Long id) {
         return (new Gson()).toJson(super.find(id));
     }
+    
+    @POST
+    @Path("finduser")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String findById(String data) { 
+    	String login = (new Gson()).fromJson(data, String[].class)[0];
+        String password = (new Gson()).fromJson(data, String[].class)[1];  
+        List<Users> u = em.createQuery("select u from Users u where u.login LIKE '" + login + "' and u.password LIKE '" + password  + "'", Users.class).getResultList();
+        if (u.isEmpty()){
+            return (new Gson()).toJson(null);
+        }
+        else if (u.size() == 1) {
+            return (new Gson()).toJson(u.get(0));
+        }
+        return (new Gson()).toJson("more than 1 user");
+    }
 
     @GET
     @Override
@@ -70,7 +93,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     public String findAll() {
         return super.findAll();
     }
-
+    
     @GET
     @Path("findrange")
     @Produces({MediaType.APPLICATION_JSON})

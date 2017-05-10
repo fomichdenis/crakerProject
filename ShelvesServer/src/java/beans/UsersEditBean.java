@@ -19,7 +19,7 @@ public class UsersEditBean implements Serializable {
     private String userName;
     private String userSurname;
     private String login;
-    private String email;
+    private String password;
     private String information;
     private Long sex;
 
@@ -55,8 +55,8 @@ public class UsersEditBean implements Serializable {
         this.login = login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Long getUserId() {
@@ -75,8 +75,8 @@ public class UsersEditBean implements Serializable {
         return login;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
 }

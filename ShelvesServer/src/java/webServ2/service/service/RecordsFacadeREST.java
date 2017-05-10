@@ -40,8 +40,8 @@ public class RecordsFacadeREST extends AbstractFacade<Records> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_JSON})
-    public void create(Records entity) {
-        super.create(entity);
+    public String create(Records entity) {
+        return super.create(entity);
     }
 
     @PUT
@@ -62,6 +62,13 @@ public class RecordsFacadeREST extends AbstractFacade<Records> {
     @Produces({MediaType.APPLICATION_JSON})
     public String find(@QueryParam("id") Long id) {
         return (new Gson()).toJson(super.find(id));
+    }
+    
+    @GET
+    @Path("findbyuser")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String findByUserId(@QueryParam("id") Long id) {
+        return (new Gson()).toJson(getEntityManager().createQuery("select r from Records r where r.userid = " + id, Records.class).getResultList());
     }
 
     @GET

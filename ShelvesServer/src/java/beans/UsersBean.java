@@ -5,6 +5,7 @@
  */
 package beans;
 
+import com.google.gson.Gson;
 import ent.Users;
 import java.io.Serializable;
 import java.util.List;
@@ -74,7 +75,7 @@ public class UsersBean implements Serializable {
             user.setUserId(newU.getUserId());
             user.setUserName(newU.getUserName());
             user.setUserSurname(newU.getUserSurname());
-            user.setEmail(newU.getEmail());
+            user.setPassword(newU.getPassword());
             user.setLogin(newU.getLogin());
             user.setSex(newU.getSex());
             user.setInformation(newU.getInformation());
@@ -95,7 +96,7 @@ public class UsersBean implements Serializable {
         }
     }
     
-    public void createUser(Long id, String name, String surname, String email, String login, Long sex, String information){
+    public void createUser(Long id, String name, String surname, String password, String login, Long sex, String information){
         if (id == null) {     
             return;
         }
@@ -105,7 +106,7 @@ public class UsersBean implements Serializable {
             user.setUserId(id);
             user.setUserName(name);
             user.setUserSurname(surname);
-            user.setEmail(email);
+            user.setPassword(password);
             user.setLogin(login);
             user.setSex(sex);
             user.setInformation(information);

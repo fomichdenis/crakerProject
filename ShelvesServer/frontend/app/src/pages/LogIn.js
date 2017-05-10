@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { browserHistory, Link } from 'react-router'
+import { Link, hashHistory } from 'react-router'
 
 import * as actions from '../redux/actions/UsersActions.js'
 
@@ -28,8 +28,11 @@ class LogIn extends Component {
     }
 
     render() {
+        // if (this.props.user) {
+        //     hashHistory.push("/user")
+        // }
         return (
-            <div id="reg">
+            <div id="form">
                 <input type="text" className="form-control" placeholder="login"
                        onChange={this.updateLogin} />
                 <h4>{this.state.login}</h4>

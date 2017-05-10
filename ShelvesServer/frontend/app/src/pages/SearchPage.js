@@ -8,8 +8,8 @@ class SearchPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { books: undefined };
-        Request.get("GET", "/webresources/books/findrange?from=0&to=2").then(r => this.setState({ books: r }));
+        this.state = { books: [] };
+        Request.get("GET", "/webresources/books").then(r => this.setState({ books: r }));
     }
 
 
@@ -17,12 +17,12 @@ class SearchPage extends Component {
         return (
             <tr key={book.bookid}>
                 <td className="col-md-2"><Link to={`/book/${book.bookid}`}>{book.bookname}</Link></td>
-                <td className="col-md-2">{book.autorid}</td>
+                <td className="col-md-2"><Link to={`/author/${book.authorid}`}>{book.authorid}</Link></td>
                 <td className="col-md-1">{book.date}</td>
                 <td className="col-md-1">{book.series}</td>
                 <td className="col-md-1">{book.seriesnumber}</td>
                 <td className="col-md-1">{book.genre}</td>
-                <td className="col-md-4 comment">{book.annotation}</td>
+                <td className="col-md-4">{book.annotation}</td>
             </tr>
         )
     }

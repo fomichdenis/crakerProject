@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router'
 
 import * as actions from '../redux/actions/UsersActions.js'
 
@@ -11,16 +10,16 @@ class SignUp extends Component {
         this.state = {
             login: '',
             password: '',
-            sex: undefined,
+            sex: '',
             sketch: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.signUp = this.signUp.bind(this);
     }
 
-    handleChange() {
+    handleChange(evt) {
         this.setState({
-            [target.name]: target.value
+            [evt.target.name]: evt.target.value
         });
     }
 
@@ -30,16 +29,17 @@ class SignUp extends Component {
 
     render() {
         return (
-            <form onSubmit={this.signUp}>
-                <input name="login" type="text" className="form-control" value={this.state.value} onChange={this.handleChange} placeholder="login"/>
-                <input name="password" type="text" className="form-control" value={this.state.value} onChange={this.handleChange} placeholder="password"/>
-                <select name="sex" value={this.state.value} onChange={this.handleChange}>
-                    <option value="0">Woman</option>
-                    <option value="1">Man</option>
-                </select>
-                <input name="sketch" type="text" className="form-control" value={this.state.value} onChange={this.handleChange} placeholder="sketch"/>
+            <div id="form">
+                <input name="login" type="text" className="form-control" onChange={this.handleChange} placeholder="login" />
+                <h4>{this.state.login}</h4>
+                <input name="password" type="text" className="form-control" onChange={this.handleChange} placeholder="password" />
+                <h4>{this.state.password}</h4>
+                <label className="radio-inline"><input name="sex" type="radio" onChange={this.handleChange} />Male</label>
+                <label className="radio-inline"><input name="sex" type="radio" onChange={this.handleChange} />Female</label>
+                <input name="sketch" type="text" className="form-control" onChange={this.handleChange} placeholder="sketch"/>
+                <h4>{this.state.sketch}</h4>
                 <input type="submit" className="btn btn-lg btn-default btn-block" />
-            </form>
+            </div>
         );
     }
 }

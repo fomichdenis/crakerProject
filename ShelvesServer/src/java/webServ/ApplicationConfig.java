@@ -29,7 +29,6 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(webServ.AuthorResource.class);
         resources.add(webServ2.service.service.AuthorsFacadeREST.class);
         resources.add(webServ2.service.service.BooksFacadeREST.class);
         resources.add(webServ2.service.service.CommentsFacadeREST.class);
@@ -38,3 +37,8 @@ public class ApplicationConfig extends Application {
     }
     
 }
+
+/*public void create(String json) {
+        T entity = (new Gson()).fromJson(json, entityClass);
+        getEntityManager().persist(entity);
+    }*/

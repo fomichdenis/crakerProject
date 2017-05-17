@@ -40,8 +40,8 @@ public class CommentsFacadeREST extends AbstractFacade<Comments> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_JSON})
-    public String create(Comments entity) {
-        return super.create(entity);
+    public String create(String json) {
+        return super.create(json);
     }
 
     @PUT

@@ -40,13 +40,15 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @POST
     @Override
     @Path("create")
-    @Consumes({MediaType.APPLICATION_JSON})
-    public String create(Users entity) {
-        List<Users> u = getEntityManager().createQuery("select u from Users u where u.login LIKE '" + entity.getLogin() + "'", Users.class).getResultList();
+    @Produces({MediaType.APPLICATION_JSON})
+    public String create(String json) {
+        Users entity = (new Gson()).fromJson(json, Users.class);
+        List<Users> u = em.createQuery("select u from Users u where u.login LIKE '" + entity.getLogin() + "'", Users.class).getResultList();
         if (u.isEmpty()) {
-            return super.create(entity);
-        }
-        else {
+            super.create(json);
+            List<Users> newu = em.createQuery("select u from Users u where u.login LIKE '" + entity.getLogin() + "'", Users.class).getResultList();
+            return (new Gson()).toJson(newu.get(0));
+        } else {
             return (new Gson()).toJson("login has already existed");
         }
     }

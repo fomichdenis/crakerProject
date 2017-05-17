@@ -7,21 +7,21 @@ class BookPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { bookInfo:[]};
-        Request.get("GET", `/webresources/books/find?id=${this.props.params.id}`).then(r => this.setState({ bookInfo: r }));
+        this.state = { book:[]};
+        Request.send("GET", `/webresources/books/find?id=${this.props.params.id}`).then(r => this.setState({ book: r }));
     }
 
     render() {
         return (
             <div className="row">
-                <div className="col-md-2">
-                    <SideInfo photoSrc="../assets/img/usersImg/user1.jpg">
-                        <b>name: {this.state.bookInfo.bookname}</b><br />
-                        <b>author: {this.state.bookInfo.authorid}</b><br />
+                <div className="col-md-3">
+                    <SideInfo photoSrc={`assets/img/books/${this.state.book.bookid}.jpg`}>
+                        <b>name: {this.state.book.bookname}</b><br />
+                        <b>author: {this.state.book.authorid}</b><br />
                     </SideInfo>
                 </div>
 
-                <div className="col-md-10">
+                <div className="col-md-9">
                     {/*statistics*/}
                     <div className="panel panel-default">
                         <div className="panel-body">
@@ -30,7 +30,7 @@ class BookPage extends Component {
                                     <div><b>Rating</b></div>
                                     <div><b>*****</b></div>
                                     <div><b>Annotation</b></div>
-                                    <div>{this.state.bookInfo.annotation}</div>
+                                    <div>{this.state.book.annotation}</div>
                                 </div>
                                 <div className="col-md-4">
                                     statistics

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import SideInfo from '../components/SideInfo.js'
+import SideInfo from '../components/SideInfo';
+import AuthorForm from '../components/AuthorForm';
+import BookForm from '../components/BookForm';
 
-import Request from '../api/RequesterAPI.js'
+import Request from '../api/RequesterAPI.js';
 
 import { Link, hashHistory } from 'react-router';
 
@@ -11,39 +13,35 @@ class UserPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { userBooks: [], open: false, newBook: {bookid: '', progress: '', rate: '', status: '', text: ''}};
+        this.state = {
+            userBooks: [],
+        };
 
         if (this.props.user) {
-            Request.get("GET", `/webresources/records/findbyuser?id=${this.props.user.userid}`).then(r => this.setState({ userBooks: r }))
-        }
-
-        this.handleChange = this.handleChange.bind(this);
-        this.addBook = this.addBook.bind(this);
-    }
-
-    handleChange(evt) {
-        this.setState({
-            [evt.target.name]: evt.target.value
-        });
-    }
-
-    addBook(evt) {
-        this.setState({ open: !this.state.open })
-        if (this.state.open === true) {
-            Request.put("POST", "/webresources/records", this.state.newBook)
+            Request.send("GET", `/webresources/records/all?id=${this.props.user.userid}`)
+                .then(r => this.setState({ userBooks: r }))
         }
     }
-
 
     viewBook(book) {
         return (
-			<tr key={book.bookid}>
-                <td className="col-md-2"><Link to={`/book/${book.bookid}`}>{book.bookid}</Link></td>
-                {/*<td className="col-md-2"><Link to={`/author/${book.authorid}`}>{book.authorid}</Link></td>*/}
-                <td className="col-md-1">{book.progress}</td>
-                <td className="col-md-1">{book.rate}</td>
-                <td className="col-md-1">{book.status}</td>
-                <td className="col-md-1">{book.text}</td>
+			<tr key={book[0].bookid}>
+                <td className="col-md-1">
+                    <Link to={`/book/${book[0].bookid}`}>
+                        <img id='photo'
+                             src={`assets/img/books/${book[0].bookid}.jpg`}
+                             onError={(evt)=>{evt.target.src='assets/img/ghost.jpg'}} />
+                    </Link>
+                </td>
+                <td className="col-md-1"><Link to={`/book/${book[0].bookid}`}>{book[0].bookname}</Link></td>
+                <td className="col-md-1"><Link to={`/author/${book[0].authorid}`}>{book[1] + ' ' + book[2]}</Link></td>
+                <td className="col-md-1">{book[0].date}</td>
+                <td className="col-md-1">{book[0].series}</td>
+                <td className="col-md-1">{book[0].seriesnumber}</td>
+                <td className="col-md-1">{book[0].genre}</td>
+                <td className="col-md-1">{book[3].progress}</td>
+                <td className="col-md-1">{book[3].rate}</td>
+                <td className="col-md-3">{book[3].text}</td>
 			</tr>
         )
     }
@@ -55,11 +53,14 @@ class UserPage extends Component {
 		return (
             <div className="row">
                 <div className="col-md-2">
-                    <SideInfo photoSrc="../assets/img/usersImg/user1.jpg">
-                        <b>login: {this.props.user.login}</b><br />
-                        <b>name: {this.props.user.username}</b><br />
-                        sex: {this.props.user.sex}<br />
-                        about me: {this.props.user.information}<br />
+                    <SideInfo photoSrc={`assets/img/users/${this.props.user.userid}.jpg`}>
+                        <b>логин: {this.props.user.login}</b><br />
+                        <b>имя: {this.props.user.username}</b><br />
+                        <b>пол:</b> {
+                            this.props.user.sex===0 ?
+                                "муж" : "жен"
+                        }<br />
+                        <b>обо мне:</b> {this.props.user.information}<br />
                     </SideInfo>
                 </div>
                 <div className="col-md-10">
@@ -99,37 +100,32 @@ class UserPage extends Component {
                         </div>
                     </div>
 
-                    {/*new book*/}
-                    <div className="panel panel-default">
-                    <button name="close" className="btn btn-lg btn-default btn-block" onClick={this.addBook}>add</button>
-                    {this.state.open === true ?
-                        <div>
-                            <input name="bookid" type="text" className="form-control" placeholder="bookId"
-                            onChange={this.handleChange} />
-                            <input name="progress" type="text" className="form-control" placeholder="progress"
-                            onChange={this.handleChange} />
-                            <input name="rate" type="text" className="form-control" placeholder="rating"
-                            onChange={this.handleChange} />
-                            <input name="status" type="text" className="form-control" placeholder="status"
-                            onChange={this.handleChange} />
-                            <input name="text" type="text" className="form-control" placeholder="opinion"
-                            onChange={this.handleChange} />
+                    <div className="row">
+                        <div className="col-md-6">
+                            {/*new book*/}
+                            <BookForm />
                         </div>
-                        : null
-                    }
+                        <div className="col-md-6">
+                            {/*new author*/}
+                            <AuthorForm />
+                        </div>
                     </div>
-
 
                     {/*books*/}
                     <div className="panel panel-default scrolling-table">
                         <table className="table table-hover">
                             <thead>
                                 <tr className="info">
-                                    <th className="col-md-2">Название</th>
-                                    <th className="col-md-2">Прогресс</th>
-                                    <th className="col-md-1">Рейтинг</th>
-                                    <th className="col-md-2">Статус</th>
-                                    <th className="col-md-4">Описание</th>
+                                    <th className="col-md-1">Фото</th>
+                                    <th className="col-md-1">Название</th>
+                                    <th className="col-md-1">Автор</th>
+                                    <th className="col-md-1">Дата</th>
+                                    <th className="col-md-1">Серия</th>
+                                    <th className="col-md-1">№</th>
+                                    <th className="col-md-1">Жанр</th>
+                                    <th className="col-md-1">Прогресс</th>
+                                    <th className="col-md-1">Оценка</th>
+                                    <th className="col-md-3">Впечатление</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -146,9 +142,9 @@ class UserPage extends Component {
 	}
 }
 
-const mapStateToProps = function(state) {
+const mapStateToProps = function(store) {
     return {
-        user: state.userState.user
+        user: store.userState.user
     };
 }
 export default connect(mapStateToProps)(UserPage);

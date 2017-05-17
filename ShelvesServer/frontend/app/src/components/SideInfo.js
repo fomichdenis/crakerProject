@@ -10,7 +10,10 @@ class SideInfo extends Component {
         return (
             <div className="panel panel-default">
                 <div className="panel-body">
-                    <div><img id='photo' src={this.props.photoSrc} alt='You are too ugly' /></div>
+                    <div><img id='photo'
+                              src={this.props.photoSrc}
+                              alt='Error'
+                              onError={(evt)=>{evt.target.src='assets/img/ghost.jpg'}} /></div>
                 <hr />
                     <div>
                         {this.props.children}

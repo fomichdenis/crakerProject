@@ -6,6 +6,7 @@
 package webServ2.service.service;
 
 import ent.Books;
+import ent.Authors;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -41,8 +42,8 @@ public class BooksFacadeREST extends AbstractFacade<Books> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_JSON})
-    public String create(Books entity) {
-        return super.create(entity);
+    public String create(String json) {
+        return super.create(json);
     }
 
     @PUT
@@ -69,7 +70,7 @@ public class BooksFacadeREST extends AbstractFacade<Books> {
     @Path("findbyauthor")
     @Produces({MediaType.APPLICATION_JSON})
     public String findByAuthorId(@QueryParam("id") Long id) {
-        return (new Gson()).toJson(getEntityManager().createQuery("select b from Books b where b.authorid = " + id, Books.class).getResultList());
+        return (new Gson()).toJson(em.createQuery("select b from Books b where b.authorid = " + id, Books.class).getResultList());
     }
 
     @GET
@@ -77,6 +78,13 @@ public class BooksFacadeREST extends AbstractFacade<Books> {
     @Produces({MediaType.APPLICATION_JSON})
     public String findAll() {
         return super.findAll();
+    }
+    
+    @GET
+    @Path("all")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getAllBooks() {
+        return (new Gson()).toJson(em.createQuery("select b, a.authorname, a.authorsurname from Books b join Authors a on b.authorid = a.authorid").getResultList());
     }
 
     @GET

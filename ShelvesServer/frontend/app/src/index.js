@@ -1,11 +1,11 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory, Redirect } from 'react-router';
 
 import { createStore, applyMiddleware, compose } from 'redux';
-import {reducer} from './redux/reducers'
-import {Provider} from 'react-redux';
+import { reducer } from './redux/reducers'
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import App from './App';

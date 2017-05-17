@@ -1,6 +1,6 @@
 const Request = {
 
-    get(requestType, request) {
+    send(requestType, request, data=null) {
         return new Promise(function(resolve, reject) {
             let xhr = new XMLHttpRequest();
             xhr.open(requestType, request);
@@ -18,31 +18,11 @@ const Request = {
             xhr.onerror = function() {
                 reject(new Error("Network Error"))
             };
-            xhr.send();
+            xhr.send(JSON.stringify(data));
         });
     },
 
-    put(requestType, request, data) {
-        return new Promise(function(resolve, reject) {
-            let xhr = new XMLHttpRequest();
-            xhr.open(requestType, request);
-            xhr.onload = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    let raw = xhr.responseText;
-                    let objectified = JSON.parse(raw);
-                    resolve(objectified);
-                } else {
-                    let error = new Arror(this.statusText);
-                    error.code = this.status;
-                    reject(error);
-                }
-            };
-            xhr.onerror = function() {
-                reject(new Error("Network Error"))
-            };
-            xhr.send(data);
-        });
-    },
+
 
     findUser(login, password) {
         return new Promise(function (resolve, reject) {
@@ -54,7 +34,6 @@ const Request = {
             }
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "/webresources/users/finduser");
-            xhr.setRequestHeader('Content-Type', 'text/plain');
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     let raw = xhr.responseText;
@@ -86,8 +65,7 @@ const Request = {
                 reject(new Error("password is not defined"));
             }
             let xhr = new XMLHttpRequest();
-            xhr.open("POST", APP_ROOT + '/user/signup');
-            xhr.setRequestHeader('Content-Type', 'text/plain');
+            xhr.open("POST", "/webresources/users/create");
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     let raw = xhr.responseText;

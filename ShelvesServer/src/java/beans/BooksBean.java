@@ -39,7 +39,7 @@ public class BooksBean implements Serializable {
     }
     
     //@Override
-    public Books getBookById(String id) {
+    public Books getBookById( String id) {
         return em.createQuery("select b from Books b where b.bookId = " + id, Books.class).getSingleResult();
     }
 

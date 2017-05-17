@@ -12,32 +12,28 @@ class LogIn extends Component {
             login: '',
             password: ''
         }
-        this.updateLogin = this.updateLogin.bind(this);
-        this.updatePassword = this.updatePassword.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.logIn = this.logIn.bind(this);
     }
 
-    updateLogin(evt) {
-        this.setState({login: evt.target.value});
-    }
-    updatePassword(evt) {
-        this.setState({password: evt.target.value});
+    handleChange(evt) {
+        this.setState({ [evt.target.name]: evt.target.value })
     }
     logIn() {
         this.props.toLogIn(this.state.login, this.state.password)
     }
 
     render() {
-        // if (this.props.user) {
-        //     hashHistory.push("/user")
-        // }
+        if (this.props.user) {
+            hashHistory.push("/user")
+        }
         return (
             <div id="form">
-                <input type="text" className="form-control" placeholder="login"
-                       onChange={this.updateLogin} />
+                <input name="login" type="text" className="form-control" placeholder="login"
+                       onChange={this.handleChange} />
                 <h4>{this.state.login}</h4>
-                <input type="password" className="form-control" placeholder="password"
-                       onChange={this.updatePassword} />
+                <input name="password" type="password" className="form-control" placeholder="password"
+                       onChange={this.handleChange} />
                 <h4>{this.state.password}</h4>
                 <button className="btn btn-lg btn-default btn-block"
                         onClick={this.logIn}>Log In</button>
@@ -47,10 +43,10 @@ class LogIn extends Component {
         );
     }
 }
-const mapStateToProps = function(state) {
+const mapStateToProps = function(store) {
     return {
-        user: state.userState.user,
-        error: state.userState.error
+        user: store.userState.user,
+        error: store.userState.error
     };
 }
 

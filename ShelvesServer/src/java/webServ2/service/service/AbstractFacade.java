@@ -23,7 +23,8 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    public String create(T entity) {
+    public String create(String json) {
+        T entity = (new Gson()).fromJson(json, entityClass);
         getEntityManager().persist(entity);
         return (new Gson()).toJson("job's done, boss");
     }

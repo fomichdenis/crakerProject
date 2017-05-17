@@ -5,7 +5,6 @@
  */
 package beans;
 
-import com.google.gson.Gson;
 import ent.Users;
 import java.io.Serializable;
 import java.util.List;

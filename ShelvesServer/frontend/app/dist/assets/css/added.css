@@ -6,6 +6,9 @@
 #photo {
 	max-width: 100%;
 }
+.ico {
+	max-height: 20px;
+}
 
 /*.page::-webkit-scrollbar {*/
 	/*display: none;*/
@@ -39,9 +42,13 @@
 	background-color: #fff;
 	transition: all 0.50s;
 }
+.btn-main:focus {
+	color: #000;
+	background-color: #fff;
+}
 
 
-/*forms*/
+	/*forms*/
 #form {
 	width: 300px;
 	margin: auto;

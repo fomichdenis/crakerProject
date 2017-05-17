@@ -17,7 +17,7 @@ class NavBar extends Component {
     }
 
     showBook() {
-        Request.get("POST", "books", this.input.value).then(r => this.setState({ book: r }));
+        Request.send("POST", "books", this.input.value).then(r => this.setState({ book: r }));
     }
 
     render() {
@@ -49,9 +49,9 @@ class NavBar extends Component {
         );
     }
 }
-const mapStateToProps = function(state) {
+const mapStateToProps = function(store) {
     return {
-        user: (state.userState.user !== undefined)
+        user: (store.userState.user !== undefined)
     };
 }
 const mapDispatchToProps = (dispatch) => {

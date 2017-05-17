@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Link, hashHistory } from 'react-router'
 
 import * as actions from '../redux/actions/UsersActions.js'
 
@@ -10,50 +11,58 @@ class SignUp extends Component {
         this.state = {
             login: '',
             password: '',
-            sex: '',
-            sketch: ''
+            username: '',
+            usersurname: '',
+            sex: '0',
+            information: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.signUp = this.signUp.bind(this);
     }
 
     handleChange(evt) {
-        this.setState({
-            [evt.target.name]: evt.target.value
-        });
+        this.setState({ [evt.target.name]: evt.target.value })
     }
 
     signUp() {
         this.props.toSignUp(this.state)
+        if (!this.props.error) {
+        }
     }
 
     render() {
+        if (this.props.user) {
+            hashHistory.push("/user")
+        }
         return (
             <div id="form">
                 <input name="login" type="text" className="form-control" onChange={this.handleChange} placeholder="login" />
-                <h4>{this.state.login}</h4>
                 <input name="password" type="text" className="form-control" onChange={this.handleChange} placeholder="password" />
-                <h4>{this.state.password}</h4>
-                <label className="radio-inline"><input name="sex" type="radio" onChange={this.handleChange} />Male</label>
-                <label className="radio-inline"><input name="sex" type="radio" onChange={this.handleChange} />Female</label>
-                <input name="sketch" type="text" className="form-control" onChange={this.handleChange} placeholder="sketch"/>
-                <h4>{this.state.sketch}</h4>
-                <input type="submit" className="btn btn-lg btn-default btn-block" />
+                <input name="username" type="text" className="form-control" onChange={this.handleChange} placeholder="name" />
+                <input name="usersurname" type="text" className="form-control" onChange={this.handleChange} placeholder="surname" />
+                <select className="form-control" name="sex" onChange={this.handleChange}>
+                    <option value="0">male</option>
+                    <option value="1">female</option>
+                </select>
+                <input name="information" type="text" className="form-control" onChange={this.handleChange} placeholder="sketch"/>
+                <button className="btn btn-lg btn-default btn-block" onClick={this.signUp}>Sign up</button>
+                <Link to="/login">login</Link>
+                <div>{this.props.error ? this.props.error.message : null}</div>
             </div>
         );
     }
 }
-const mapStateToProps = function(state) {
+const mapStateToProps = function(store) {
     return {
-        user: state.userState.user,
-        error: state.userState.error
+        user: store.userState.user,
+        error: store.userState.error
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         toSignUp: (data) => {
-            dispatch(actions.logIn(data))
+            dispatch(actions.signUp(data))
         }
     }
 }

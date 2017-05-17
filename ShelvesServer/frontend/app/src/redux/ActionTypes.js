@@ -1,8 +1,3 @@
-/**
- * Created by sabir on 19.02.17.
- */
-
-
 //users
 export const LOGIN = 'LOGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'

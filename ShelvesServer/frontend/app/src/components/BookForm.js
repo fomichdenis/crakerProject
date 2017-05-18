@@ -40,18 +40,14 @@ class BookForm extends Component {
     render() {
         return (
             <div className="panel panel-default">
-                <button type="submit" name="close" className="btn btn-lg btn-default btn-block" onClick={this.add}>Add Book</button>
+                <button type="submit" name="close" className="btn btn-lg btn-default btn-block" onClick={this.add}>Добавить книгу</button>
                 {
                     this.state.open === true ?
                         <div onChange={this.handleChange}>
                             <input name="authorname" type="text" className="form-control" placeholder="authorname" />
-                            {this.state.authorname}
                             <input name="authorsurname" type="text" className="form-control" placeholder="authorsurname" />
-                            {this.state.authorsurname}
                             <input name="deathyear" type="number" className="form-control" placeholder="deathyear" />
-                            {this.state.deathyear}
-                            <input name="information" type="text" className="form-control" placeholder="information" />
-                            {this.state.information}
+                            <textarea name="information" type="text" className="form-control" placeholder="information" />
                         </div>
                         : null
                 }

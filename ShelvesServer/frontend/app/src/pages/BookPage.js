@@ -22,18 +22,20 @@ class BookPage extends Component {
                 </div>
 
                 <div className="col-md-9">
-                    {/*statistics*/}
                     <div className="panel panel-default">
                         <div className="panel-body">
                             <div className="row">
                                 <div className="col-md-8">
+                                    {/*info*/}
+                                    <h3>{this.state.book.bookname}</h3><br />
+                                    <b>author: {this.state.book.authorid}</b><br />
                                     <div><b>Rating</b></div>
                                     <div><b>*****</b></div>
                                     <div><b>Annotation</b></div>
                                     <div>{this.state.book.annotation}</div>
                                 </div>
                                 <div className="col-md-4">
-                                    statistics
+                                    {/*statistics*/}
                                     <div className="progress">
                                         <div className="progress-bar progress-bar-success" style={{width: 70}}>
                                             <span className="sr-only" />

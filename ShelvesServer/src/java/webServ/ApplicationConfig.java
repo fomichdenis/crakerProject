@@ -33,6 +33,7 @@ public class ApplicationConfig extends Application {
         resources.add(webServ2.service.service.BooksFacadeREST.class);
         resources.add(webServ2.service.service.CommentsFacadeREST.class);
         resources.add(webServ2.service.service.RecordsFacadeREST.class);
+        resources.add(webServ2.service.service.Search.class);
         resources.add(webServ2.service.service.UsersFacadeREST.class);
     }
     

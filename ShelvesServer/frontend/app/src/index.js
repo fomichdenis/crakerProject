@@ -17,9 +17,15 @@ import UserPage from './pages/UserPage';
 import NotFound from './pages/NotFound';
 import AuthorPage from './pages/AuthorPage';
 
-
 const AppRouter = () => (
-	<Router history={hashHistory}>
+	<Router history={hashHistory}
+			createElement={ (component, props) =>
+			{
+				const { location } = props;
+				const key = `${location.pathname}${location.search}`;
+				props = { ...props, key };
+				return React.createElement(component, props)
+			}}>
 		<Route path="/" component={ App }>
 			<IndexRoute component={ SearchPage } />
 

@@ -36,17 +36,17 @@ class SignUp extends Component {
         }
         return (
             <div id="form">
-                <input name="login" type="text" className="form-control" onChange={this.handleChange} placeholder="login" />
-                <input name="password" type="text" className="form-control" onChange={this.handleChange} placeholder="password" />
-                <input name="username" type="text" className="form-control" onChange={this.handleChange} placeholder="name" />
-                <input name="usersurname" type="text" className="form-control" onChange={this.handleChange} placeholder="surname" />
+                <input name="login" type="text" className="form-control" onChange={this.handleChange} placeholder="логин" />
+                <input name="password" type="password" className="form-control" onChange={this.handleChange} placeholder="пароль" />
+                <input name="username" type="text" className="form-control" onChange={this.handleChange} placeholder="имя" />
+                <input name="usersurname" type="text" className="form-control" onChange={this.handleChange} placeholder="фамилия" />
                 <select className="form-control" name="sex" onChange={this.handleChange}>
-                    <option value="0">male</option>
-                    <option value="1">female</option>
+                    <option value="0">муж</option>
+                    <option value="1">жен</option>
                 </select>
-                <input name="information" type="text" className="form-control" onChange={this.handleChange} placeholder="sketch"/>
+                <textarea name="information" type="text" className="form-control" onChange={this.handleChange} placeholder="обо мне"/>
                 <button className="btn btn-lg btn-default btn-block" onClick={this.signUp}>Sign up</button>
-                <Link to="/login">login</Link>
+                <Link to="/login">У меня есть аккаунт</Link>
                 <div>{this.props.error ? this.props.error.message : null}</div>
             </div>
         );

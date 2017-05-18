@@ -29,15 +29,15 @@ class LogIn extends Component {
         }
         return (
             <div id="form">
-                <input name="login" type="text" className="form-control" placeholder="login"
+                <input name="login" type="text" className="form-control" placeholder="логин"
                        onChange={this.handleChange} />
                 <h4>{this.state.login}</h4>
-                <input name="password" type="password" className="form-control" placeholder="password"
+                <input name="password" type="password" className="form-control" placeholder="пароль"
                        onChange={this.handleChange} />
                 <h4>{this.state.password}</h4>
                 <button className="btn btn-lg btn-default btn-block"
                         onClick={this.logIn}>Log In</button>
-                <Link to="/signup">registration</Link>
+                <Link to="/signup">Регистрация</Link>
                 <div>{this.props.error ? this.props.error.message : null}</div>
             </div>
         );

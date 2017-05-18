@@ -42,15 +42,15 @@ class AuthorForm extends Component {
     render() {
         return (
             <div className="panel panel-default">
-                <button type="submit" name="close" className="btn btn-lg btn-default btn-block" onClick={this.add}>Add Author</button>
+                <button type="submit" name="close" className="btn btn-lg btn-default btn-block" onClick={this.add}>Добавить автора</button>
                 {
                     this.state.open === true ?
                         <div onChange={this.handleChange}>
-                            <input name="authorname" type="text" className="form-control" placeholder="author name" />
-                            <input name="authorsurname" type="text" className="form-control" placeholder="author surname" />
-                            <input name="yearbirthday" type="number" className="form-control" placeholder="birth year" />
-                            <input name="deathyear" type="number" className="form-control" placeholder="death year" />
-                            <input name="information" type="text" className="form-control" placeholder="information" />
+                            <input name="authorname" type="text" className="form-control" placeholder="имя" />
+                            <input name="authorsurname" type="text" className="form-control" placeholder="фамилия" />
+                            <input name="yearbirthday" type="number" className="form-control" placeholder="год рождения" />
+                            <input name="deathyear" type="number" className="form-control" placeholder="год смерти" />
+                            <textarea name="information" type="text" className="form-control" placeholder="биография" />
                         </div>
                         : null
                 }

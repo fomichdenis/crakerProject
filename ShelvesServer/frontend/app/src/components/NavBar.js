@@ -12,12 +12,29 @@ class NavBar extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { book: null };
-        this.showBook = this.showBook.bind(this);
+        this.state = { books: undefined, authors: undefined };
+
+        this.find = this.find.bind(this);
+        this.clear = this.clear.bind(this);
     }
 
-    showBook() {
-        Request.send("POST", "books", this.input.value).then(r => this.setState({ book: r }));
+    clear() {
+        this.setState({ books: undefined, authors: undefined })
+    }
+
+    find(evt) {
+        let data = evt.target.value;
+        if (data !== undefined && data.trim() !== '') {
+            Request.send("GET", `/webresources/search?data=${evt.target.value}`)
+                .then(r => {
+                    if (r.books !== undefined) {
+                        this.setState({books: r.books})
+                    } else this.setState({ books: undefined });
+                    if (r.authors !== undefined) {
+                        this.setState({authors: r.authors})
+                    } else this.setState({ authors: undefined })
+                })
+        }
     }
 
     render() {
@@ -33,11 +50,19 @@ class NavBar extends Component {
                     </ul>
                     <div className="navbar-form navbar-right">
                         <div className="input-group">
-                            <input type="text" className="form-control" placeholder="Search" ref={(input) => {this.input = input}} />
+                            <input type="text" className="form-control dropdown-toggle" data-toggle="dropdown" placeholder="Search" onChange={this.find} />
                             <span className="input-group-btn">
-                                <button className="btn btn-default" type="button" onClick={this.showBook}>Go!</button>
+                                <button className="btn btn-default" type="button" onClick={this.showResult}>Go!</button>
                             </span>
                         </div>
+                        {(this.state.books || this.state.authors) ?
+                            <ul id="search">
+                                {this.state.books ?
+                                    this.state.books.map(b => <li key={"b" + b[0]}><Link to={`/book/${b[0]}`} className="item">{b[1]}</Link></li>) : null}
+                                {this.state.authors ?
+                                    this.state.authors.map(a => <li key={"a" + a[0]}><Link to={`/author/${a[0]}`} className="item">{a[1] + ' ' + a[2]}</Link></li>) : null}
+                            </ul>
+                            : null}
                         {
                             this.props.user ?
                             <a className="btn btn-main" onClick={this.props.LogOut}><b>Log Out</b></a> : <Link to="/login" className="btn btn-main"><b>Log In</b></Link>

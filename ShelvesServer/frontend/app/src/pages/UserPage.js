@@ -56,22 +56,23 @@ class UserPage extends Component {
                     <SideInfo photoSrc={`assets/img/users/${this.props.user.userid}.jpg`}>
                         <b>логин: {this.props.user.login}</b><br />
                         <b>имя: {this.props.user.username}</b><br />
-                        <b>пол:</b> {
-                            this.props.user.sex===0 ?
-                                "муж" : "жен"
-                        }<br />
+                        <b>пол:</b> {this.props.user.sex===0 ? "муж" : "жен"}<br />
                         <b>обо мне:</b> {this.props.user.information}<br />
                     </SideInfo>
                 </div>
                 <div className="col-md-10">
-                    {/*statistics*/}
                     <div className="panel panel-default">
                         <div className="panel-body">
                             <div className="row">
                                 <div className="col-md-6">
-                                    statistics
+                                    {/*info*/}
+                                    <h3>{this.props.user.username + ' ' + this.props.user.usersurname}</h3><br />
+                                    <b>Логин: {this.props.user.login}</b><br />
+                                    <b>Пол:</b> {this.props.user.sex===0 ? "муж" : "жен"}<br />
+                                    <b>Обо мне:</b> {this.props.user.information}<br />
                                 </div>
                                 <div className="col-md-6">
+                                    {/*statistics*/}
                                     <div className="progress">
                                         <div className="progress-bar progress-bar-success" style={{width: 70}}>
                                             <span className="sr-only" />

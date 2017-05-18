@@ -47,15 +47,19 @@ class AuthorPage extends Component {
                     </SideInfo>
                 </div>
                 <div className="col-md-9">
-                    {/*statistics*/}
                     <div className="panel panel-default">
                         <div className="panel-body">
                             <div className="row">
                                 <div className="col-md-6">
+                                    {/*info*/}
+                                    <h3>{this.state.author.authorname + ' ' + this.state.author.authorsurname}</h3><br />
+                                    <b>Дата рождения:</b> {this.state.author.yearbirthday}<br />
+                                    <b>Дата смерти:</b> {this.state.author.deathyear}<br />
                                     <b>Биография</b><br />
                                     {this.state.author.information}
                                 </div>
                                 <div className="col-md-6">
+                                    {/*statistics*/}
                                     <b>Читаемость</b><br />
                                     <div className="progress">
                                         <div className="progress-bar progress-bar-success" style={{width: 70}}>

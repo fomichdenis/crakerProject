@@ -63,7 +63,10 @@ public class BooksFacadeREST extends AbstractFacade<Books> {
     @Path("find")
     @Produces({MediaType.APPLICATION_JSON})
     public String find(@QueryParam("id") Long id) {
-        return (new Gson()).toJson(super.find(id));
+        return (new Gson()).toJson(em.createQuery("select b, a.authorname, a.authorsurname "
+                + "from Books b "
+                + "left join Authors a on b.authorid = a.authorid "
+                + "where b.bookid = :id").setParameter("id", id).getSingleResult());
     }
     
     @GET
@@ -84,7 +87,9 @@ public class BooksFacadeREST extends AbstractFacade<Books> {
     @Path("all")
     @Produces({MediaType.APPLICATION_JSON})
     public String getAllBooks() {
-        return (new Gson()).toJson(em.createQuery("select b, a.authorname, a.authorsurname from Books b join Authors a on b.authorid = a.authorid").getResultList());
+        return (new Gson()).toJson(em.createQuery("select b, a.authorname, a.authorsurname "
+                + "from Books b "
+                + "join Authors a on b.authorid = a.authorid").getResultList());
     }
 
     @GET

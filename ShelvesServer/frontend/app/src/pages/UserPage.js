@@ -8,24 +8,24 @@ import BookForm from '../components/BookForm';
 import Request from '../api/RequesterAPI.js';
 
 import { Link, hashHistory } from 'react-router';
+import * as actions from '../redux/actions/UsersActions.js'
 
 class UserPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            userBooks: [],
-        };
+        this.state = { userBooks: [] };
 
         if (this.props.user) {
             Request.send("GET", `/webresources/records/all?id=${this.props.user.userid}`)
-                .then(r => this.setState({ userBooks: r }))
+                .then(r => this.setState({ userBooks: r }));
+            this.props.loadBooks(this.props.user.userid)
         }
     }
 
     viewBook(book) {
         return (
-			<tr key={book[0].bookid}>
+			<tr id={book[0].bookid} key={book[0].bookid}>
                 <td className="col-md-1">
                     <Link to={`/book/${book[0].bookid}`}>
                         <img id='photo'
@@ -33,11 +33,9 @@ class UserPage extends Component {
                              onError={(evt)=>{evt.target.src='assets/img/ghost.jpg'}} />
                     </Link>
                 </td>
-                <td className="col-md-1"><Link to={`/book/${book[0].bookid}`}>{book[0].bookname}</Link></td>
-                <td className="col-md-1"><Link to={`/author/${book[0].authorid}`}>{book[1] + ' ' + book[2]}</Link></td>
+                <td className="col-md-2"><Link to={`/book/${book[0].bookid}`}>{book[0].bookname}</Link></td>
+                <td className="col-md-2"><Link to={`/author/${book[0].authorid}`}>{book[1] + ' ' + book[2]}</Link></td>
                 <td className="col-md-1">{book[0].date}</td>
-                <td className="col-md-1">{book[0].series}</td>
-                <td className="col-md-1">{book[0].seriesnumber}</td>
                 <td className="col-md-1">{book[0].genre}</td>
                 <td className="col-md-1">{book[3].progress}</td>
                 <td className="col-md-1">{book[3].rate}</td>
@@ -54,47 +52,26 @@ class UserPage extends Component {
             <div className="row">
                 <div className="col-md-2">
                     <SideInfo photoSrc={`assets/img/users/${this.props.user.userid}.jpg`}>
-                        <b>логин: {this.props.user.login}</b><br />
-                        <b>имя: {this.props.user.username}</b><br />
-                        <b>пол:</b> {this.props.user.sex===0 ? "муж" : "жен"}<br />
-                        <b>обо мне:</b> {this.props.user.information}<br />
+                        <button className="btn btn-default btn-sm btn-block">Изменить</button>
                     </SideInfo>
                 </div>
                 <div className="col-md-10">
                     <div className="panel panel-default">
                         <div className="panel-body">
                             <div className="row">
-                                <div className="col-md-6">
+                                <div className="col-md-8">
                                     {/*info*/}
                                     <h3>{this.props.user.username + ' ' + this.props.user.usersurname}</h3><br />
                                     <b>Логин: {this.props.user.login}</b><br />
                                     <b>Пол:</b> {this.props.user.sex===0 ? "муж" : "жен"}<br />
                                     <b>Обо мне:</b> {this.props.user.information}<br />
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-4">
                                     {/*statistics*/}
-                                    <div className="progress">
-                                        <div className="progress-bar progress-bar-success" style={{width: 70}}>
-                                            <span className="sr-only" />
-                                        </div>
-                                        <div className="progress-bar progress-bar-warning progress-bar-striped" style={{width: 50}}>
-                                            <span className="sr-only" />
-                                        </div>
-                                        <div className="progress-bar progress-bar-danger" style={{width: 30}}>
-                                            <span className="sr-only" />
-                                        </div>
-                                    </div>
-                                    <div className="progress">
-                                        <div className="progress-bar progress-bar-success" style={{width: 70}}>
-                                            <span className="sr-only" />
-                                        </div>
-                                        <div className="progress-bar progress-bar-warning progress-bar-striped" style={{width: 50}}>
-                                            <span className="sr-only" />
-                                        </div>
-                                        <div className="progress-bar progress-bar-danger" style={{width: 30}}>
-                                            <span className="sr-only" />
-                                        </div>
-                                    </div>
+                                    <h3>Статистика</h3><br />
+                                    <b>Прочитано книг:</b><br /><br />
+                                    <b>Книг в процессе чнения:</b><br /><br />
+                                    <b>Любимые книги:</b><br /><br />
                                 </div>
                             </div>
 
@@ -118,11 +95,9 @@ class UserPage extends Component {
                             <thead>
                                 <tr className="info">
                                     <th className="col-md-1">Фото</th>
-                                    <th className="col-md-1">Название</th>
-                                    <th className="col-md-1">Автор</th>
+                                    <th className="col-md-2">Название</th>
+                                    <th className="col-md-2">Автор</th>
                                     <th className="col-md-1">Дата</th>
-                                    <th className="col-md-1">Серия</th>
-                                    <th className="col-md-1">№</th>
                                     <th className="col-md-1">Жанр</th>
                                     <th className="col-md-1">Прогресс</th>
                                     <th className="col-md-1">Оценка</th>
@@ -148,4 +123,11 @@ const mapStateToProps = function(store) {
         user: store.userState.user
     };
 }
-export default connect(mapStateToProps)(UserPage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadBooks: (userId) => {
+            dispatch(actions.loadBooks(userId))
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

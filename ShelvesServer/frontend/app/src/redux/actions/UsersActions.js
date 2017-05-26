@@ -19,6 +19,8 @@ let onLoginFailed = (error) => {
         error: error
     }
 }
+
+
 //thunk
 export function logIn(login, password){
     return (dispatch, getState) => {
@@ -26,6 +28,34 @@ export function logIn(login, password){
         return Request.findUser(login, password).then(
             user => dispatch(onLoggedIn(user)),
             error => dispatch(onLoginFailed(error))
+        )
+    }
+}
+
+//BOOKS LOADING
+let startBooksLoading = () => {
+    return {
+        type: types.LOAD_BOOKS
+    }
+}
+let booksLoadingSuccess = (books) => {
+    return {
+        type: types.BOOKS_SUCCESS,
+        books: books
+    }
+}
+let booksLoadingFail = (error) => {
+    return {
+        type: types.BOOKS_FAIL,
+        error: error
+    }
+}
+export function loadBooks(userId){
+    return (dispatch, getState) => {
+        dispatch(startBooksLoading())
+        return Request.send("GET", `/webresources/records/findbyuser?id=${userId}`).then(
+            books => dispatch(booksLoadingSuccess(books)),
+            error => dispatch(booksLoadingFail(error))
         )
     }
 }

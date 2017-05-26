@@ -59,7 +59,9 @@ body {
 	height: 100%;
 }
 
-
+#info {
+	text-align: center;
+}
 
 
 /*exit button*/

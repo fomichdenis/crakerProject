@@ -26,10 +26,8 @@ class SearchPage extends Component {
                 <td className="col-md-2"><Link to={`/book/${book[0].bookid}`}>{book[0].bookname}</Link></td>
                 <td className="col-md-2"><Link to={`/author/${book[0].authorid}`}>{book[1] + ' ' + book[2]}</Link></td>
                 <td className="col-md-1">{book[0].date}</td>
-                <td className="col-md-1">{book[0].series}</td>
-                <td className="col-md-1">{book[0].seriesnumber}</td>
-                <td className="col-md-1">{book[0].genre}</td>
-                <td className="col-md-3">{book[0].annotation}</td>
+                <td className="col-md-2">{book[0].genre}</td>
+                <td className="col-md-4">{book[0].annotation}</td>
             </tr>
         )
     }
@@ -44,10 +42,8 @@ class SearchPage extends Component {
                         <th className="col-md-2">Название</th>
                         <th className="col-md-2">Автор</th>
                         <th className="col-md-1">Год</th>
-                        <th className="col-md-1">Цикл</th>
-                        <th className="col-md-1">№</th>
-                        <th className="col-md-1">Жанр</th>
-                        <th className="col-md-3">Описание</th>
+                        <th className="col-md-2">Жанр</th>
+                        <th className="col-md-4">Описание</th>
                     </tr>
                     </thead>
                     <tbody>

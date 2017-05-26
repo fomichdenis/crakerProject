@@ -4,7 +4,7 @@ import { Map } from 'immutable';
 const initialState = {
     loading: false,
     user: undefined,
-    linksMap: Map(),
+    books: undefined,
     error: undefined
 }
 
@@ -32,6 +32,18 @@ const usersReducer =  (state = initialState, action = {}) => {
             };
 
         case types.LOGIN_FAIL:
+            return stopLoading(state, action);
+
+
+        case types.LOAD_BOOKS:
+            return startLoading(state, action);
+        case types.BOOKS_SUCCESS:
+            return {
+                ...state,
+                books: action.books,
+                loading: false
+            };
+        case types.BOOKS_FAIL:
             return stopLoading(state, action);
 
 

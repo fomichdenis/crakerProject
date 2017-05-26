@@ -20,7 +20,7 @@ class LogIn extends Component {
         this.setState({ [evt.target.name]: evt.target.value })
     }
     logIn() {
-        this.props.toLogIn(this.state.login, this.state.password)
+        this.props.toLogIn(this.state.login, this.state.password);
     }
 
     render() {
@@ -31,10 +31,8 @@ class LogIn extends Component {
             <div id="form">
                 <input name="login" type="text" className="form-control" placeholder="логин"
                        onChange={this.handleChange} />
-                <h4>{this.state.login}</h4>
-                <input name="password" type="password" className="form-control" placeholder="пароль"
+                <input name="password" type="password" className="form-control" placeholder="повторите пароль"
                        onChange={this.handleChange} />
-                <h4>{this.state.password}</h4>
                 <button className="btn btn-lg btn-default btn-block"
                         onClick={this.logIn}>Log In</button>
                 <Link to="/signup">Регистрация</Link>

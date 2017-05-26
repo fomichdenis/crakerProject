@@ -8,11 +8,14 @@ class BookForm extends Component {
         this.state = {
             open: false,
 
+            bookname: undefined,
             authorname: undefined,
             authorsurname: undefined,
-            deathyear: undefined,
-            information: undefined
-        }
+            date: undefined,
+            genre: undefined,
+            annotation: undefined
+
+    }
 
         this.handleChange = this.handleChange.bind(this);
         this.add = this.add.bind(this);
@@ -27,10 +30,14 @@ class BookForm extends Component {
     add(evt) {
         this.setState({ open: !this.state.open })
         let newBook = {
+            bookname: this.state.boookname,
+            date: this.state.date,
+            genre: this.state.genre,
+            annotation: this.state.annotation
+        }
+        let author = {
             authorname: this.state.authorname,
-            authorsurname: this.state.authorsurname,
-            deathyear: this.state.deathyear,
-            information: this.state.information
+            authorsurname: this.state.authorsurname
         }
         if (this.state.open === true) {
             Request.send("POST", "/webresources/books/create", newBook)
@@ -44,10 +51,12 @@ class BookForm extends Component {
                 {
                     this.state.open === true ?
                         <div onChange={this.handleChange}>
-                            <input name="authorname" type="text" className="form-control" placeholder="authorname" />
-                            <input name="authorsurname" type="text" className="form-control" placeholder="authorsurname" />
-                            <input name="deathyear" type="number" className="form-control" placeholder="deathyear" />
-                            <textarea name="information" type="text" className="form-control" placeholder="information" />
+                            <input name="bookname" type="text" className="form-control" placeholder="название" />
+                            <input name="authorname" type="text" className="form-control" placeholder="имя автора" />
+                            <input name="authorsurname" type="text" className="form-control" placeholder="фамилия автора" />
+                            <input name="date" type="number" className="form-control" placeholder="дата создания" />
+                            <input name="genre" type="text" className="form-control" placeholder="жанр" />
+                            <textarea name="annotation" type="text" className="form-control" placeholder="описание" />
                         </div>
                         : null
                 }

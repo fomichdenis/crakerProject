@@ -50,10 +50,7 @@ class NavBar extends Component {
                     </ul>
                     <div className="navbar-form navbar-right">
                         <div className="input-group">
-                            <input type="text" className="form-control dropdown-toggle" data-toggle="dropdown" placeholder="Search" onChange={this.find} />
-                            <span className="input-group-btn">
-                                <button className="btn btn-default" type="button" onClick={this.showResult}>Go!</button>
-                            </span>
+                            <input type="text" className="form-control dropdown-toggle" placeholder="Search" onChange={this.find} />
                         </div>
                         {(this.state.books || this.state.authors) ?
                             <ul id="search">

@@ -39,9 +39,27 @@ public class RecordsFacadeREST extends AbstractFacade<Records> {
 
     @POST
     @Override
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("new")
     public String create(String json) {
         return super.create(json);
+    }
+    
+    @POST
+    @Path("create")
+    public String newRecord(String json) {
+        Records entity = (new Gson()).fromJson(json, Records.class);
+        List result = em.createQuery("select r.recordid "
+                + "from Records r "
+                + "where r.userid = :userid and r.bookid = :bookid")
+                .setParameter("userid", entity.getUserId())
+                .setParameter("bookid", entity.getBookId())
+                .getResultList();
+        if (result.isEmpty()) {
+            em.persist(entity);
+            return (new Gson()).toJson("Книга добавлена");
+        } else {
+            return (new Gson()).toJson("Уже в вашей библиотеке");
+        }
     }
 
     @PUT
@@ -52,11 +70,29 @@ public class RecordsFacadeREST extends AbstractFacade<Records> {
     }
 
     @DELETE
-    @Path("remove")
+    @Path("rem")
     public void remove(@QueryParam("id") Long id) {
         super.remove(super.find(id));
     }
 
+    @POST
+    @Path("remove")
+    public String removeRecord(String json) {
+        Records entity = (new Gson()).fromJson(json, Records.class);
+        List result = em.createQuery("select r.recordid "
+                + "from Records r "
+                + "where r.userid = :userid and r.bookid = :bookid")
+                .setParameter("userid", entity.getUserId())
+                .setParameter("bookid", entity.getBookId())
+                .getResultList();
+         if (result.isEmpty()) {
+            return (new Gson()).toJson("Такой книги нет");
+        } else {
+            super.remove(super.find(result.get(0)));
+            return (new Gson()).toJson("Уже в вашей библиотеке");
+        }
+    }
+    
     @GET
     @Path("find")
     @Produces({MediaType.APPLICATION_JSON})
@@ -68,7 +104,7 @@ public class RecordsFacadeREST extends AbstractFacade<Records> {
     @Path("findbyuser")
     @Produces({MediaType.APPLICATION_JSON})
     public String findByUserId(@QueryParam("id") Long id) {
-        return (new Gson()).toJson(getEntityManager().createQuery("select r from Records r where r.userid = " + id, Records.class).getResultList());
+        return (new Gson()).toJson(getEntityManager().createQuery("select r.bookid from Records r where r.userid = " + id, Records.class).getResultList());
     }
 
     @GET

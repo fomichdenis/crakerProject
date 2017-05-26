@@ -28,10 +28,8 @@ class AuthorPage extends Component {
                 <td className="col-md-2"><Link to={`/book/${book.bookid}`}>{book.bookname}</Link></td>
                 <td className="col-md-2">{this.state.author.authorname + ' ' + this.state.author.authorsurname}</td>
                 <td className="col-md-1">{book.date}</td>
-                <td className="col-md-1">{book.series}</td>
-                <td className="col-md-1">{book.seriesnumber}</td>
-                <td className="col-md-1">{book.genre}</td>
-                <td className="col-md-4">{book.annotation}</td>
+                <td className="col-md-2">{book.genre}</td>
+                <td className="col-md-3">{book.annotation}</td>
             </tr>
         )
     }
@@ -41,46 +39,34 @@ class AuthorPage extends Component {
             <div className="row">
                 <div className="col-md-3">
                     <SideInfo photoSrc={`assets/img/authors/${this.state.author.authorid}.jpg`}>
-                        <b>Имя: {this.state.author.authorname + ' ' + this.state.author.authorsurname}</b><br />
-                        <b>Дата рождения:</b> {this.state.author.yearbirthday}<br />
-                        <b>Дата смерти:</b> {this.state.author.deathyear}
+                        <b>{this.state.author.authorname + ' ' + this.state.author.authorsurname}</b><br />
+                        {this.state.author.yearbirthday + ' - ' + this.state.author.deathyear}<br />
                     </SideInfo>
                 </div>
                 <div className="col-md-9">
                     <div className="panel panel-default">
                         <div className="panel-body">
                             <div className="row">
-                                <div className="col-md-6">
+                                <div className="col-md-8">
                                     {/*info*/}
                                     <h3>{this.state.author.authorname + ' ' + this.state.author.authorsurname}</h3><br />
-                                    <b>Дата рождения:</b> {this.state.author.yearbirthday}<br />
-                                    <b>Дата смерти:</b> {this.state.author.deathyear}<br />
-                                    <b>Биография</b><br />
+                                    <b>Годы жизни: </b>{this.state.author.yearbirthday + ' - ' + (this.state.author.deathyear ?
+                                            this.state.author.deathyear : "...")}<br />
+                                    <b>Биография: </b><br />
                                     {this.state.author.information}
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-4">
                                     {/*statistics*/}
-                                    <b>Читаемость</b><br />
+                                    <h3>Статистика </h3><br />
+                                    <b>Написано книг: </b><br /><br />
+                                    <b>Лучшие книги: </b><br /><br />
+                                    <b>Рейтинг: </b><br />
                                     <div className="progress">
-                                        <div className="progress-bar progress-bar-success" style={{width: 70}}>
-                                            <span className="sr-only" />
+                                        <div className="progress-bar progress-bar-success" style={{width: '80%'}}>
+                                            80%
                                         </div>
-                                        <div className="progress-bar progress-bar-warning progress-bar-striped" style={{width: 50}}>
-                                            <span className="sr-only" />
-                                        </div>
-                                        <div className="progress-bar progress-bar-danger" style={{width: 30}}>
-                                            <span className="sr-only" />
-                                        </div>
-                                    </div>
-                                    <div className="progress">
-                                        <div className="progress-bar progress-bar-success" style={{width: 70}}>
-                                            <span className="sr-only" />
-                                        </div>
-                                        <div className="progress-bar progress-bar-warning progress-bar-striped" style={{width: 50}}>
-                                            <span className="sr-only" />
-                                        </div>
-                                        <div className="progress-bar progress-bar-danger" style={{width: 30}}>
-                                            <span className="sr-only" />
+                                        <div className="progress-bar progress-bar-danger" style={{width: '20%'}}>
+                                            20%
                                         </div>
                                     </div>
                                 </div>
@@ -95,13 +81,11 @@ class AuthorPage extends Component {
                             <thead>
                             <tr className="info">
                                 <th className="col-md-1">Фото</th>
-                                <th className="col-md-1">Название</th>
+                                <th className="col-md-2">Название</th>
                                 <th className="col-md-2">Автор</th>
                                 <th className="col-md-1">Год</th>
-                                <th className="col-md-1">Цикл</th>
-                                <th className="col-md-1">№</th>
-                                <th className="col-md-1">Жанр</th>
-                                <th className="col-md-4">Описание</th>
+                                <th className="col-md-2">Жанр</th>
+                                <th className="col-md-3">Описание</th>
                             </tr>
                             </thead>
                             <tbody>
